@@ -1,133 +1,151 @@
 body {
-    background: #f3efea;
+  background: #f3efea;
 }
+
 #root {
-    width: 100%;
+  width: 100%;
 }
+
 .container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 0 auto;
-    max-width: 800px
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 auto;
+  max-width: 800px
 }
+
 .films {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin-top: 100px;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 100px;
+  width: 100%;
 }
+
 .filmItem {
-    align-items: flex-start;
-    background: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 80px;
-    padding: 30px;
-    width: 100%;
+  align-items: flex-start;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 80px;
+  padding: 30px;
+  width: 100%;
 }
+
 .filmItem__row {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-left: 30px;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 30px;
 }
+
 .filmItem__row:first-child {
-    flex-grow: 0;
-    height: 200px;
-    padding: 0;
-    position: relative;
-    width: 150px;
+  flex-grow: 0;
+  height: 200px;
+  padding: 0;
+  position: relative;
+  width: 150px;
 }
+
 .filmItem__row img {
-    margin-top: -60px;
-    max-height: 200px;
-    object-fit: cover;
-    object-position: top;
-    overflow: hidden;
-    width: 150px;
+  margin-top: -60px;
+  max-height: 200px;
+  object-fit: cover;
+  object-position: top;
+  overflow: hidden;
+  width: 150px;
 }
+
 .filmItem__row .genre {
-    border-radius: 3px;
-    color: #ffe4a1;
-    left: 70%;
-    line-height: 110%;
-    padding: 2px 10px;
-    position: absolute;
-    top: -40px;
+  border-radius: 3px;
+  color: #ffe4a1;
+  left: 70%;
+  line-height: 110%;
+  padding: 2px 10px;
+  position: absolute;
+  top: -40px;
 }
+
 .filmItem__row .action {
-    background: #ffc400;
+  background: #ffc400;
 }
+
 .filmItem__row .western {
-    background: #342400;
+  background: #342400;
 }
 
 
 .filmItem__row-icons {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
 }
+
 .filmItem__row-icons > a {
-    height: 30px;
-    width: 30px;
+  height: 30px;
+  width: 30px;
 }
+
 .filmItem__row-icons > a svg {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
+
 .filmItem__row-icon-favorite {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .filmItem__row:last-child {
-    flex-grow: 1;
+  flex-grow: 1;
 }
+
 .filmItem__row-title {
-    color: #213547;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 50px;
+  color: #213547;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
 }
 
 
 .card-body-stars {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin: 0 0 10px;
-    padding: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 0 10px;
+  padding: 0;
 }
+
 .card-body-stars li {
-    list-style: none;
+  list-style: none;
 }
 
 
 .filmItem__row-actions {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
+
 .filmItem__row-actions button {
-    background: #595959;
-    color: #fff;
-    margin-right: 30px;
+  background: #595959;
+  color: #fff;
+  margin-right: 30px;
 }
+
 .filmItem__row-actions .filmItem__row-actions-price {
-    margin: 0 2px 0 10px;
+  margin: 0 2px 0 10px;
 }
+
 .filmItem__row-actions a:hover,
 .filmItem__row-actions a:visited,
 .filmItem__row-actions a {
-    color: #595959;
+  color: #595959;
 }

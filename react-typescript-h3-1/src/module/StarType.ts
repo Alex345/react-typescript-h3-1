@@ -1,4 +1,3 @@
-
 export type StarType = {
-    raiting: number | string,
+  raiting: number | string,
 }
