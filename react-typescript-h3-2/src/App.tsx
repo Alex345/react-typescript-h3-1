@@ -1,3 +1,5 @@
+
+import './assets/css/main.css';
 import './assets/css/Listing.css';
 import ListingType from './modules/ListingType';
 import Listing from "./components/Listing";
