@@ -1,50 +1,119 @@
-# React + TypeScript + Vite
+История чата
+===
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Необходимо реализовать один из компонентов чата — историю сообщений:
+![Чат](./src/assets/preview.png)
 
-Currently, two official plugins are available:
+## Данные
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Список сообщений, передаваемый в компонент, представляет собой _массив объектов_, каждый из которых представляет собой сообщение, которое необходимо отразить в истории. Сообщение имеет следующие свойства:
+- `id` — уникальный идентификатор сообщения, _строка_;
+- `from` — автор сообщения, _объект_;
+- `type` — тип сообщения, _строка_, варианты значений: `response`, `message`, `typing`;
+- `time` — время публикации сообщения, _строка_;
+- `text` — текст сообщения, _строка_, может отсутствовать.
 
-## Expanding the ESLint configuration
+## Описание компонента
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Для отображения списка создайте компонент `MessageHistory`, который принимает следующие атрибуты:
+- `list` — список сообщений, _массив объектов_, по умолчанию пустой массив.
 
-- Configure the top-level `parserOptions` property like this:
+Если список сообщений пуст, то компонент не должен иметь какого-либо представления в DOM.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Компонент должен создавать на основе списка предложений следующий HTML-код:
+```html
+<ul>
+  <li class="clearfix">
+    <div class="message-data align-right">
+      <span class="message-data-time">10:10</span> &nbsp; &nbsp;
+      <span class="message-data-name">Ольга</span>
+      <i class="fa fa-circle me"></i>
+    </div>
+    <div class="message other-message float-right">
+      Привет, Виктор. Как дела? Как идёт работа над проектом?
+    </div>
+  </li>
+  <li>
+    <div class="message-data">
+      <span class="message-data-name"><i class="fa fa-circle online"></i> Виктор</span>
+      <span class="message-data-time">10:12</span>
+    </div>
+    <div class="message my-message">
+      Привет. Давай сегодня созвонимся. Проект практически готов, и у меня есть что показать.
+    </div>
+  </li>
+  <!-- … и так далее -->
+</ul>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Где каждый тег `<li>` — сообщение из массива. Для отображения сообщений в чате необходимо использовать следующие компоненты:
+- `Message` — если тип сообщения равен `message`;
+- `Response` — если тип сообщения равен `response`;
+- `Typing` — если тип сообщения равен `typing`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Все три компонента принимают следующие аргументы:
+- `from` — автор сообщения, _объект_;
+- `message` — сообщение, _объект_.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## Пример использования
+
+```jsx
+const messages = [{
+  id: 'chat-5-1090',
+  from: { name: 'Ольга' },
+  type: 'response',
+  time: '10:10',
+  text: 'Привет, Виктор. Как дела? Как идёт работа над проектом?'
+}];
+
+// в компоненте App:
+return (
+  <div className="clearfix container">
+    <div className="chat">
+      <div className="chat-history">
+        <MessageHistory list={messages} />
+      </div>
+    </div>  
+  </div>
+);
 ```
+
+Данные для сообщений:
+```js
+const messages = [{
+  id: 'chat-5-1090',
+  from: { name: 'Ольга' },
+  type: 'response',
+  time: '10:10',
+  text: 'Привет, Виктор. Как дела? Как идёт работа над проектом?'
+}, {
+  id: 'chat-5-1091',
+  from: { name: 'Виктор' },
+  type: 'message',
+  time: '10:12',
+  text: 'Привет. Давай сегодня созвонимся. Проект практически готов, и у меня есть что показать.'
+}, {
+  id: 'chat-5-1092',
+  from: { name: 'Ольга' },
+  type: 'response',
+  time: '10:14',
+  text: 'Не уверена, что сегодня получится. Всё ещё в офисе. Давай уточню через час. Возникли ли какие-либо проблемы на последней стадии проекта?'
+}, {
+  id: 'chat-5-1093',
+  from: { name: 'Виктор' },
+  type: 'message',
+  time: '10:20',
+  text: 'Нет, всё прошло гладко. Очень хочу показать всё команде.'
+}, {
+  id: 'chat-5-1094',
+  from: { name: 'Виктор' },
+  type: 'typing',
+  time: '10:31'
+}];
+```
+
+## Реализация
+
+Необходимо реализовать компонент `MessageHistory`. Важно: вам нужно реализовать только список истории, аватарки и боковую панель реализовывать не нужно.
+
+Используйте файл из каталога CSS для стилизации.
